@@ -1,0 +1,54 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adftraingewoo"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/HTTP_LEGO_Colors')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Http_lego",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation",
+						"relativeUrl": "colors.csv.gz"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "\u001f�\b\u0000qͼ_\u0000\u0003�[�n�ƒ}�� �ý�@��L��&�V[j\t�j��dPU)�W",
+						"type": "String"
+					},
+					{
+						"name": "�����`��������8�\\j��\u000e\fۍ��-�\u0013�Y�i�",
+						"type": "String"
+					},
+					{
+						"name": "�դHWf�f�j�<���3[N��\\�US���\u000359���D%a0Q\u0013��U\u0007z2/_\u000b�*+���챭\fC�x\u0012�\u0013�\u0005�M�i�����CY9�9*��v�\u001f\u001eLE�8��$\u0013���֙�Ӆٙ1�(߳Sz�\u0012���P��P1�BB�C0��8��É",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		}
+	]
+}
